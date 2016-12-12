@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>¯\_(ツ)_/¯</title>
+  </head>
+  <body>
+
+    <input value="¯\_(ツ)_/¯" />
+
+    <script>
+
+      var input = document.getElementsByTagName('input')[0];
+      input.focus();
+      input.select();
+      console.log(input);
+
+      const cp = input.createTextRange();
+      cp.execCommand('RemoveFormat');
+      cp.execCommand('Copy');
+
+    </script>
+
+  </body>
+</html>
