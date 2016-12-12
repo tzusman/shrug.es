@@ -1,22 +1,90 @@
 <html>
   <head>
     <title>¯\_(ツ)_/¯</title>
+    <meta name="title" content="¯\_(ツ)_/¯" />
+    <meta name="description" content="Fastest way to copy ¯\_(ツ)_/¯" />
+    <meta name="abstract" content="Shrug ¯\_(ツ)_/¯ ASCII" />
+    <meta name="keywords" content="¯\_(ツ)_/¯, shrug, shrug copy, shrug ascii, idk, idk ascii, shrug ascii copy, shrug ascii paste" />
+    <meta name="author" content="Todd Zusman @tzusman" />
+    <meta name="robots" content="All" />
+    <style>
+      ::selection {
+        background: transparent;
+      }
+
+      body {
+        background-color: #f7f7f7;
+        color: #222;
+        font-family: 'Open Sans', 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 96px;
+        border: none;
+        outline: none;
+        background: transparent;
+      }
+
+      span, div {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: #777;
+        transition: color 0.25s;
+      }
+
+      span { top: 20px; font-size: .8rem; }
+      .copied span { color: #ccc; }
+
+      div { top: 45px; color: transparent; }
+      .copied div { color: #777; }
+
+    </style>
   </head>
   <body>
 
-    <input value="¯\_(ツ)_/¯" />
+    <input value="¯\_(ツ)_/¯" readonly />
+
+    <span>click anywhere or cmd+c</span>
+    <div>copied!</div>
 
     <script>
+      var shrug = document.getElementsByTagName('input')[0];
+      
+      shrug.focus();
+      shrug.select();
 
-      var input = document.getElementsByTagName('input')[0];
-      input.focus();
-      input.select();
-      console.log(input);
+      var timeout;
+      function showCopied() {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        document.body.className = 'copied';
+        timeout = setTimeout(function(){
+          document.body.className = '';
+        }, 3000);
+      }
 
-      const cp = input.createTextRange();
-      cp.execCommand('RemoveFormat');
-      cp.execCommand('Copy');
+      document.addEventListener('copy', function(e) {
+        if (e.target === shrug) {
+          showCopied();
+        }
+      });
 
+      document.addEventListener('click', function(e) {
+        try {
+          document.execCommand('copy');
+          showCopied();
+        } catch(e) { }
+
+        shrug.focus();
+        shrug.select();
+      });
     </script>
 
   </body>
