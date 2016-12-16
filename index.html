@@ -8,6 +8,7 @@
     <meta name="author" content="Todd Zusman @tzusman" />
     <meta name="robots" content="All" />
     <meta name="github" content="https://github.com/tzusman/shrug.es" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
     <style>
       ::selection {
         background: transparent;
@@ -39,29 +40,30 @@
         transition: color 0.25s;
       }
 
-      span { top: 20px; font-size: .8rem; }
+      span.click { top: 20px; font-size: .8rem; display: block; }
+      span.tap { top: 20px; font-size: 1.5rem; display: none; }
       .copied span { color: #ccc; }
 
       div { top: 45px; color: transparent; }
       .copied div { color: #777; }
 
       @media (max-device-width: 800px) {
-        input {
-          font-size: 10rem;
-        }
-
-        span {
-          font-size: 3rem;
-        }
+        span.click { display: none; }
+        span.tap { display: block; }
+        div { top: 60px; font-size: 2rem; }
+        input {font-size: 4rem; }
       }
+
+
     </style>
   </head>
   <body>
 
-    <input value="¯\_(ツ)_/¯" readonly />
-
-    <span>click anywhere or cmd+c</span>
+    <span class="click">click anywhere or cmd+c</span>
+    <span class="tap">tap anywhere to copy</span>
     <div>copied!</div>
+
+    <input value="¯\_(ツ)_/¯" readonly />
 
     <script>
       var shrug = document.getElementsByTagName('input')[0];
